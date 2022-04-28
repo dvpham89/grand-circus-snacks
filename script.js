@@ -1,7 +1,11 @@
 "use strict";
 
 let shoppingCart = [];
+const cartDiv = document.querySelector(".cart-div");
+const main = document.querySelector("main");
+const cartButton = document.querySelector("#cart");
 const foodItems = document.querySelector(".food-items");
+
 const snacksGC = [
   {
     image: "assets/01-funnel-cakes.jpg",
@@ -107,9 +111,21 @@ foodItems.addEventListener("click", (e) => {
   }
 });
 
+cartButton.addEventListener("click", (e) => {
+  shoppingCart.forEach((item) => {
+    const cartLi = document.createElement("li");
+    const cartTitle = document.createElement("p");
+    const cartPrice = document.createElement("p");
+    const cartImage = document.createElement("img");
+    const checkoutButton = document.createElement("button");
+    cartLi.classList.add("cart-li");
+    cartTitle.textContent = item.name;
+    cartPrice.textContent = item.price;
+    cartImage.setAttribute("src", item.image);
+    cartLi.append(cartImage, cartTitle, cartPrice);
+    cartDiv.append(cartLi, checkoutButton);
+    main.append(cartDiv);
+  });
+});
+
 const viewCart = () => {};
-
-//use filter method for nav button//
-
-//rename existing array to new array and push items into cart once selected//
-//push method? target each individual item of array with even listener
