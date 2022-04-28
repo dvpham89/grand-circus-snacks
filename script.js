@@ -1,6 +1,7 @@
 "use strict";
-let shoppingCart = 
-const foodContainer = document.querySelector(".food-container");
+
+let shoppingCart = [];
+const foodItems = document.querySelector(".food-items");
 const snacksGC = [
   {
     image: "assets/01-funnel-cakes.jpg",
@@ -75,34 +76,40 @@ const snacksGC = [
   },
 ];
 
-const constructMenu = () => {
-  snacksGC.forEach((snack) => {
-    const newLi = document.createElement("li");
+const createMenu = () => {
+  snacksGC.forEach((snack, index) => {
+    const menuLi = document.createElement("li");
     const title = document.createElement("p");
     const description = document.createElement("p");
     const price = document.createElement("p");
     const image = document.createElement("img");
+    const addToCart = document.createElement("button");
+    addToCart.setAttribute("data-index", index);
     image.setAttribute("src", snack.image);
     image.classList.add("food-images");
     title.textContent = snack.name;
     description.textContent = snack.description;
     price.textContent = snack.price;
-    newLi.classList.add(snack.category);
-    newLi.append(image, title, description, price);
-    foodContainer.append(newLi);
+    addToCart.textContent = "Add to cart";
+    menuLi.classList.add(snack.category);
+    addToCart.classList.add("add-to-cart");
+    menuLi.append(image, title, description, price, addToCart);
+    foodItems.append(menuLi);
   });
 };
-constructMenu();
+createMenu();
 
-(function () {
-  $("#cart").on("click", function () {
-    $(".shopping-cart").fadeToggle("fast");
-  });
-})();
+foodItems.addEventListener("click", (e) => {
+  if (e.target.classList.contains("add-to-cart")) {
+    const index = e.target.getAttribute("data-index");
+    shoppingCart.push(snacksGC[index]);
+    console.log(shoppingCart);
+  }
+});
+
+const viewCart = () => {};
+
 //use filter method for nav button//
 
 //rename existing array to new array and push items into cart once selected//
 //push method? target each individual item of array with even listener
-const cartSelection = [] => {
-  document.getElementById("").addEventListener("");
-};

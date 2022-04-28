@@ -28,7 +28,22 @@ main {
   flex-direction: column;
 }
 
-.food-container {
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container img {
+  height: 250px;
+}
+
+.food-items {
   width: 500px;
   display: flex;
   flex-wrap: wrap;
