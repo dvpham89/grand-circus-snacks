@@ -1,5 +1,5 @@
 "use strict";
-
+let shoppingCart = 
 const foodContainer = document.querySelector(".food-container");
 const snacksGC = [
   {
@@ -103,6 +103,6 @@ constructMenu();
 
 //rename existing array to new array and push items into cart once selected//
 //push method? target each individual item of array with even listener
-const cartSelection = () => {
+const cartSelection = [] => {
   document.getElementById("").addEventListener("");
 };
