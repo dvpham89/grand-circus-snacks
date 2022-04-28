@@ -93,3 +93,16 @@ const constructMenu = () => {
   });
 };
 constructMenu();
+
+(function () {
+  $("#cart").on("click", function () {
+    $(".shopping-cart").fadeToggle("fast");
+  });
+})();
+//use filter method for nav button//
+
+//rename existing array to new array and push items into cart once selected//
+//push method? target each individual item of array with even listener
+const cartSelection = () => {
+  document.getElementById("").addEventListener("");
+};
