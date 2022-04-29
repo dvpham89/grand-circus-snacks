@@ -1,7 +1,8 @@
 "use strict";
 
 let shoppingCart = [];
-const cartDiv = document.querySelector(".cart-div");
+let subTotal = 0;
+const cartUl = document.querySelector(".cart-ul");
 const main = document.querySelector("main");
 const cartButton = document.querySelector("#cart");
 const foodItems = document.querySelector(".food-items");
@@ -113,24 +114,27 @@ foodItems.addEventListener("click", (e) => {
 
 cartButton.addEventListener("click", (e) => {
   shoppingCart.forEach((item) => {
-    const cartDiv = document.querySelector(".cart-div");
     const cartLi = document.createElement("li");
+    const cartDiv = document.createElement("div");
     const cartTitle = document.createElement("p");
     const cartPrice = document.createElement("p");
     const cartImage = document.createElement("img");
-    cartDiv.style.display = "flex";
-    cartLi.classList.add("cart-li");
+    subTotal += item.price;
+    cartDiv.classList.add("cart-div");
     cartTitle.textContent = item.name;
     cartPrice.textContent = item.price;
-    cartLi.setAttribute("data-price", item.price);
+    cartDiv.setAttribute("data-price", item.price);
     cartImage.setAttribute("src", item.image);
     cartImage.classList.add("cart-food-images");
-    cartLi.append(cartImage, cartTitle, cartPrice);
-    cartDiv.append(cartLi);
-    main.append(cartDiv);
+    cartDiv.append(cartImage, cartTitle, cartPrice);
+    cartLi.append(cartDiv);
+    cartUl.append(cartLi);
   });
+  const subTotalP = document.createElement("p");
   const checkoutButton = document.createElement("button");
-  cartDiv.append(checkoutButton);
+  cartUl.classList.add("cart-li");
+  cartUl.style.display = "flex";
+  subTotalP.textContent = `Subtotal: $${subTotal.toFixed(2)}`;
+  checkoutButton.textContent = "Check out";
+  cartUl.append(subTotalP, checkoutButton);
 });
-
-const viewCart = () => {};
