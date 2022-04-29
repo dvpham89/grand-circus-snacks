@@ -7,6 +7,7 @@ const cartUl = document.querySelector(".cart-ul");
 const main = document.querySelector("main");
 const cartButton = document.querySelector("#cart");
 const foodItems = document.querySelector(".food-items");
+const subTotalP = document.createElement("p");
 const checkoutButton = document.createElement("button");
 
 const snacksGC = [
@@ -112,8 +113,12 @@ main.addEventListener("click", (e) => {
     shoppingCart.push(snacksGC[index]);
     console.log(shoppingCart);
   }
-
-  if (e.target.classList.contains("cart-Ul")) {
+  console.log(e.target);
+  if (
+    e.target.classList.contains("cart-link") ||
+    e.target.classList.contains("fa")
+  ) {
+    cartUl.innerHTML = "";
     shoppingCart.forEach((item) => {
       const cartLi = document.createElement("li");
       const cartDiv = document.createElement("div");
@@ -122,18 +127,15 @@ main.addEventListener("click", (e) => {
       const cartImage = document.createElement("img");
       subTotal += item.price;
       cartDiv.classList.add("cart-div");
+      cartImage.classList.add("cart-food-images");
       cartTitle.textContent = item.name;
       cartPrice.textContent = item.price;
       cartDiv.setAttribute("data-price", item.price);
       cartImage.setAttribute("src", item.image);
-      cartImage.classList.add("cart-food-images");
       cartDiv.append(cartImage, cartTitle, cartPrice);
       cartLi.append(cartDiv);
       cartUl.append(cartLi);
     });
-
-    const subTotalP = document.createElement("p");
-    cartUl.classList.add("cart-li");
     checkoutButton.classList = "checkout-button";
     cartUl.style.display = "flex";
     subTotalP.textContent = `Subtotal: $${subTotal.toFixed(2)}`;
@@ -144,25 +146,44 @@ main.addEventListener("click", (e) => {
   if (e.target.classList.contains("checkout-button")) {
     const checkoutDiv = document.createElement("div");
     const salesTax = document.createElement("p");
-    const grandTotal = document.createElement("p");
+    const cartTotal = document.createElement("p");
     const cashButton = document.createElement("button");
     const creditButton = document.createElement("button");
     subTotalP.textContent = `Subtotal: $${subTotal.toFixed(2)}`;
     salesTax.textContent = `Sales tax: 6%`;
     total = subTotal + subTotal * 0.06;
-    grandTotal.textContent = `Total: ${total}`;
+    cartTotal.textContent = `Total: ${total}`;
     cashButton.textContent = "Cash";
     creditButton.textContent = "Credit";
-
+    cashButton.classList.add("cash-button");
+    creditButton.classList.add("credit-button");
     checkoutDiv.append(
       subTotalP,
       salesTax,
-      grandTotal,
+      cartTotal,
       cashButton,
       creditButton
     );
     cartUl.append(checkoutDiv);
     // });
+  }
+
+  if (e.target.classList.contains("cash-button")) {
+    const cashForm = document.querySelector(".cash-form");
+    const changeAmount = document.createElement("p");
+    const cashInput = document.querySelector("#tender-amount");
+    cashForm.style.display = "block";
+    cashForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const cashTendered = cashInput.value;
+      if (cashTendered >= total) {
+        const difference = cashTendered - total;
+        changeAmount.textContent = `Change: $${difference.toFixed(2)}`;
+      } else {
+        alert("insufficient funds, please check amount");
+      }
+      cashForm.append(changeAmount);
+    });
   }
 });
 

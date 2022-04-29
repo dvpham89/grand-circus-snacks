@@ -37,6 +37,12 @@ main {
   justify-content: space-between;
 }
 
+.cart-link {
+  padding: 20px;
+  font-size: 30px;
+  color: #ef6637;
+}
+
 .image-container {
   display: flex;
   justify-content: center;
@@ -80,9 +86,6 @@ main {
   align-items: center;
 }
 
-.cart-li {
-}
-
 .cart-div {
   list-style: none;
   text-align: center;
@@ -93,6 +96,11 @@ main {
   width: 200px;
   border-radius: 20%;
   margin: 20px;
+}
+
+.cash-form,
+.credit-form {
+  display: none;
 }
 
 footer {
