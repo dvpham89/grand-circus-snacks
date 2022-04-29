@@ -155,8 +155,8 @@ main.addEventListener("click", (e) => {
     cartTotal.textContent = `Total: ${total}`;
     cashButton.textContent = "Cash";
     creditButton.textContent = "Credit";
-    cashButton.classList.add("cash-button");
-    creditButton.classList.add("credit-button");
+    cashButton.classList.add("cash-button", "payment");
+    creditButton.classList.add("credit-button", "payment");
     checkoutDiv.append(
       subTotalP,
       salesTax,
@@ -168,80 +168,39 @@ main.addEventListener("click", (e) => {
     // });
   }
 
-  if (e.target.classList.contains("cash-button")) {
-    const cashForm = document.querySelector(".cash-form");
-    const changeAmount = document.createElement("p");
-    const cashInput = document.querySelector("#tender-amount");
-    cashForm.style.display = "block";
-    cashForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const cashTendered = cashInput.value;
-      if (cashTendered >= total) {
-        const difference = cashTendered - total;
-        changeAmount.textContent = `Change: $${difference.toFixed(2)}`;
-      } else {
-        alert("insufficient funds, please check amount");
-      }
-      cashForm.append(changeAmount);
-    });
+  if (e.target.classList.contains("payment")) {
+    if (e.target.classList.contains("cash-button")) {
+      const cashForm = document.querySelector(".cash-form");
+      const changeAmount = document.createElement("p");
+      const cashInput = document.querySelector("#tender-amount");
+      cashForm.style.display = "block";
+
+      cashForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (e.target.classList.contains("cash-out")) {
+          const cashTendered = cashInput.value;
+          if (cashTendered >= total) {
+            const difference = cashTendered - total;
+            changeAmount.textContent = `Change: $${difference.toFixed(2)}`;
+          } else {
+            alert("insufficient funds, please check amount");
+          }
+          cashForm.append(changeAmount);
+        }
+      });
+    }
+    if (e.target.classList.contains("credit-button")) {
+      const creditForm = document.querySelector(".credit-form");
+      creditForm.style.display = "block";
+      const creditDiv = document.querySelector("div");
+    }
   }
 });
 
-//foodItems.addEventListener("click", (e) => {
-//   if (e.target.classList.contains("add-to-cart")) {
-//     const index = e.target.getAttribute("data-index");
-//     shoppingCart.push(snacksGC[index]);
-//     console.log(shoppingCart);
-//   }
-// });
-
-// //  cartButton.addEventListener("click", (e) =>
-// {
-// shoppingCart.forEach((item) => {
-//   const cartLi = document.createElement("li");
-//   const cartDiv = document.createElement("div");
-//   const cartTitle = document.createElement("p");
-//   const cartPrice = document.createElement("p");
-//   const cartImage = document.createElement("img");
-//   subTotal += item.price;
-//   cartDiv.classList.add("cart-div");
-//   cartTitle.textContent = item.name;
-//   cartPrice.textContent = item.price;
-//   cartDiv.setAttribute("data-price", item.price);
-//   cartImage.setAttribute("src", item.image);
-//   cartImage.classList.add("cart-food-images");
-//   cartDiv.append(cartImage, cartTitle, cartPrice);
-//   cartLi.append(cartDiv);
-//   cartUl.append(cartLi);
-// });
-// const subTotalP = document.createElement("p");
-// cartUl.classList.add("cart-li");
-// cartUl.style.display = "flex";
-// subTotalP.textContent = `Subtotal: $${subTotal.toFixed(2)}`;
-
-// checkoutButton.textContent = "Check out";
-// cartUl.append(subTotalP, checkoutButton);
-
-// checkoutButton.addEventListener("click", (e) => {
-//   const checkoutDiv = document.createElement("div");
-//   const salesTax = document.createElement("p");
-//   const grandTotal = document.createElement("p");
-//   const cashButton = document.createElement("button");
-//   const creditButton = document.createElement("button");
-//   subTotalP.textContent = `Subtotal: $${subTotal.toFixed(2)}`;
-//   salesTax.textContent = `Sales tax: 6%`;
-//   total = subTotal + subTotal * 0.06;
-//   grandTotal.textContent = `Total: ${total}`;
-//   cashButton.textContent = "Cash";
-//   creditButton.textContent = "Credit";
-
-//   checkoutDiv.append(
-//     subTotalP,
-//     salesTax,
-//     grandTotal,
-//     cashButton,
-//     creditButton
-//   );
-//   cartUl.append(checkoutDiv);
-// });
-// });
+const receipt = document.querySelector("div");
+const itemName = document.querySelector("p");
+const itemPrice = document.querySelector("p");
+subTotal.textContent = `Subtotal: $${subTotal.toFixed(2)}`;
+total.textContent = `Total: $${total.toFixed(2)}`;
+receipt.append(itemName, itemPrice, subTotal, total);
+cartUl.append(receipt);
