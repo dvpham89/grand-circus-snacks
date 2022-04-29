@@ -2,10 +2,12 @@
 
 let shoppingCart = [];
 let subTotal = 0;
+let total = 0;
 const cartUl = document.querySelector(".cart-ul");
 const main = document.querySelector("main");
 const cartButton = document.querySelector("#cart");
 const foodItems = document.querySelector(".food-items");
+const checkoutButton = document.createElement("button");
 
 const snacksGC = [
   {
@@ -104,37 +106,121 @@ const createMenu = () => {
 };
 createMenu();
 
-foodItems.addEventListener("click", (e) => {
+main.addEventListener("click", (e) => {
   if (e.target.classList.contains("add-to-cart")) {
     const index = e.target.getAttribute("data-index");
     shoppingCart.push(snacksGC[index]);
     console.log(shoppingCart);
   }
+
+  if (e.target.classList.contains("cart-Ul")) {
+    shoppingCart.forEach((item) => {
+      const cartLi = document.createElement("li");
+      const cartDiv = document.createElement("div");
+      const cartTitle = document.createElement("p");
+      const cartPrice = document.createElement("p");
+      const cartImage = document.createElement("img");
+      subTotal += item.price;
+      cartDiv.classList.add("cart-div");
+      cartTitle.textContent = item.name;
+      cartPrice.textContent = item.price;
+      cartDiv.setAttribute("data-price", item.price);
+      cartImage.setAttribute("src", item.image);
+      cartImage.classList.add("cart-food-images");
+      cartDiv.append(cartImage, cartTitle, cartPrice);
+      cartLi.append(cartDiv);
+      cartUl.append(cartLi);
+    });
+
+    const subTotalP = document.createElement("p");
+    cartUl.classList.add("cart-li");
+    checkoutButton.classList = "checkout-button";
+    cartUl.style.display = "flex";
+    subTotalP.textContent = `Subtotal: $${subTotal.toFixed(2)}`;
+    checkoutButton.textContent = "Check out";
+    cartUl.append(subTotalP, checkoutButton);
+  }
+
+  if (e.target.classList.contains("checkout-button")) {
+    const checkoutDiv = document.createElement("div");
+    const salesTax = document.createElement("p");
+    const grandTotal = document.createElement("p");
+    const cashButton = document.createElement("button");
+    const creditButton = document.createElement("button");
+    subTotalP.textContent = `Subtotal: $${subTotal.toFixed(2)}`;
+    salesTax.textContent = `Sales tax: 6%`;
+    total = subTotal + subTotal * 0.06;
+    grandTotal.textContent = `Total: ${total}`;
+    cashButton.textContent = "Cash";
+    creditButton.textContent = "Credit";
+
+    checkoutDiv.append(
+      subTotalP,
+      salesTax,
+      grandTotal,
+      cashButton,
+      creditButton
+    );
+    cartUl.append(checkoutDiv);
+    // });
+  }
 });
 
-cartButton.addEventListener("click", (e) => {
-  shoppingCart.forEach((item) => {
-    const cartLi = document.createElement("li");
-    const cartDiv = document.createElement("div");
-    const cartTitle = document.createElement("p");
-    const cartPrice = document.createElement("p");
-    const cartImage = document.createElement("img");
-    subTotal += item.price;
-    cartDiv.classList.add("cart-div");
-    cartTitle.textContent = item.name;
-    cartPrice.textContent = item.price;
-    cartDiv.setAttribute("data-price", item.price);
-    cartImage.setAttribute("src", item.image);
-    cartImage.classList.add("cart-food-images");
-    cartDiv.append(cartImage, cartTitle, cartPrice);
-    cartLi.append(cartDiv);
-    cartUl.append(cartLi);
-  });
-  const subTotalP = document.createElement("p");
-  const checkoutButton = document.createElement("button");
-  cartUl.classList.add("cart-li");
-  cartUl.style.display = "flex";
-  subTotalP.textContent = `Subtotal: $${subTotal.toFixed(2)}`;
-  checkoutButton.textContent = "Check out";
-  cartUl.append(subTotalP, checkoutButton);
-});
+//foodItems.addEventListener("click", (e) => {
+//   if (e.target.classList.contains("add-to-cart")) {
+//     const index = e.target.getAttribute("data-index");
+//     shoppingCart.push(snacksGC[index]);
+//     console.log(shoppingCart);
+//   }
+// });
+
+// //  cartButton.addEventListener("click", (e) =>
+// {
+// shoppingCart.forEach((item) => {
+//   const cartLi = document.createElement("li");
+//   const cartDiv = document.createElement("div");
+//   const cartTitle = document.createElement("p");
+//   const cartPrice = document.createElement("p");
+//   const cartImage = document.createElement("img");
+//   subTotal += item.price;
+//   cartDiv.classList.add("cart-div");
+//   cartTitle.textContent = item.name;
+//   cartPrice.textContent = item.price;
+//   cartDiv.setAttribute("data-price", item.price);
+//   cartImage.setAttribute("src", item.image);
+//   cartImage.classList.add("cart-food-images");
+//   cartDiv.append(cartImage, cartTitle, cartPrice);
+//   cartLi.append(cartDiv);
+//   cartUl.append(cartLi);
+// });
+// const subTotalP = document.createElement("p");
+// cartUl.classList.add("cart-li");
+// cartUl.style.display = "flex";
+// subTotalP.textContent = `Subtotal: $${subTotal.toFixed(2)}`;
+
+// checkoutButton.textContent = "Check out";
+// cartUl.append(subTotalP, checkoutButton);
+
+// checkoutButton.addEventListener("click", (e) => {
+//   const checkoutDiv = document.createElement("div");
+//   const salesTax = document.createElement("p");
+//   const grandTotal = document.createElement("p");
+//   const cashButton = document.createElement("button");
+//   const creditButton = document.createElement("button");
+//   subTotalP.textContent = `Subtotal: $${subTotal.toFixed(2)}`;
+//   salesTax.textContent = `Sales tax: 6%`;
+//   total = subTotal + subTotal * 0.06;
+//   grandTotal.textContent = `Total: ${total}`;
+//   cashButton.textContent = "Cash";
+//   creditButton.textContent = "Credit";
+
+//   checkoutDiv.append(
+//     subTotalP,
+//     salesTax,
+//     grandTotal,
+//     cashButton,
+//     creditButton
+//   );
+//   cartUl.append(checkoutDiv);
+// });
+// });
