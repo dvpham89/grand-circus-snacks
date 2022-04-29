@@ -27,14 +27,9 @@
           <span class="iconify" data-icon="charm:menu-hamburger"></span>
           <ul class="menu-nav"></ul>
         </nav>
-        <ul class="cart-nav">
-          <li>
-            <a href="#" id="cart"
-              ><i class="fa fa-shopping-cart"></i>Cart
-              <span class="badge"></span
-            ></a>
-          </li>
-        </ul>
+        <a href="#" class="cart-link" id="cart"
+          ><i class="fa fa-shopping-cart"></i
+        ></a>
       </div>
       <div class="image-container">
         <img src="assets/mobile-image.jpg" alt="" />
@@ -43,6 +38,14 @@
         <ul class="food-items"></ul>
       </div>
       <ul class="cart-ul"></ul>
+      <div>
+        <form class="cash-form">
+          <label for="tender-amount">Tender amount:</label>
+          <input type="text" name="tender-amount" id="tender-amount" />
+          <button class="cash-out">Cash out</button>
+        </form>
+        <form class="credit-form"></form>
+      </div>
     </main>
     <footer>
       <img class="footer-img" src="assets/gc-footer.jpg" alt="" />
