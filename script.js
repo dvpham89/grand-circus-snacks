@@ -113,19 +113,24 @@ foodItems.addEventListener("click", (e) => {
 
 cartButton.addEventListener("click", (e) => {
   shoppingCart.forEach((item) => {
+    const cartDiv = document.querySelector(".cart-div");
     const cartLi = document.createElement("li");
     const cartTitle = document.createElement("p");
     const cartPrice = document.createElement("p");
     const cartImage = document.createElement("img");
-    const checkoutButton = document.createElement("button");
+    cartDiv.style.display = "flex";
     cartLi.classList.add("cart-li");
     cartTitle.textContent = item.name;
     cartPrice.textContent = item.price;
+    cartLi.setAttribute("data-price", item.price);
     cartImage.setAttribute("src", item.image);
+    cartImage.classList.add("cart-food-images");
     cartLi.append(cartImage, cartTitle, cartPrice);
-    cartDiv.append(cartLi, checkoutButton);
+    cartDiv.append(cartLi);
     main.append(cartDiv);
   });
+  const checkoutButton = document.createElement("button");
+  cartDiv.append(checkoutButton);
 });
 
 const viewCart = () => {};

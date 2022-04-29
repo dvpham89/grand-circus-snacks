@@ -23,14 +23,18 @@ h1 {
 }
 
 main {
-  /*background: black;*/
+  background: black;
   display: flex;
   flex-direction: column;
-  /*color:white;*/
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  color: white;
 }
 
 .nav-container {
   display: flex;
+  width: 100%;
   justify-content: space-between;
 }
 
@@ -44,13 +48,49 @@ main {
   height: 250px;
 }
 
+.food-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .food-items {
   width: 500px;
   display: flex;
   flex-wrap: wrap;
 }
 
+.food-items li {
+  text-align: center;
+}
+
 .food-images {
+  height: 200px;
+  width: 200px;
+  border-radius: 20%;
+  margin: 20px;
+}
+
+.cart-div {
+  display: none;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  z-index: 1;
+  border: 1px solid #ef6637;
+  background-color: #ef6637;
+}
+
+.cart-li {
+  list-style: none;
+  text-align: center;
+}
+
+.cart-food-images {
   height: 200px;
   width: 200px;
   border-radius: 20%;
