@@ -28,7 +28,6 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
   color: white;
 }
 
@@ -73,19 +72,18 @@ main {
   margin: 20px;
 }
 
-.cart-div {
+.cart-ul {
   display: none;
-  height: 100%;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-  position: absolute;
-  z-index: 1;
   border: 1px solid #ef6637;
   background-color: #ef6637;
+  flex-direction: column;
+  align-items: center;
 }
 
 .cart-li {
+}
+
+.cart-div {
   list-style: none;
   text-align: center;
 }
