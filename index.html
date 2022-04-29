@@ -41,10 +41,45 @@
       <div>
         <form class="cash-form">
           <label for="tender-amount">Tender amount:</label>
-          <input type="text" name="tender-amount" id="tender-amount" />
+          <input
+            type="number"
+            name="tender-amount"
+            id="tender-amount"
+            required
+          />
           <button class="cash-out">Cash out</button>
         </form>
-        <form class="credit-form"></form>
+        <form class="credit-form">
+          <label for="credit-number">Credit Card Number</label>
+          <input
+            type="tel"
+            pattern="[0-9\s]{13,19}"
+            maxlength="16"
+            placeholder="xxxx xxxx xxxx xxxx"
+            name="credit-number"
+            id="credit-number"
+            required
+          />
+          <label for="exp">Exp</label>
+          <input
+            type="date"
+            pattern="[0-9\s]{13,19}"
+            maxlength="5"
+            name="exp"
+            id="exp"
+            required
+          />
+          <label for="cvv">CVV</label>
+          <input
+            type="number"
+            pattern="[0-9\s]{13,19}"
+            maxlength="3"
+            name="cvv"
+            id="cvv"
+            required
+          />
+          <button class="run-card">Run Card</button>
+        </form>
       </div>
     </main>
     <footer>
