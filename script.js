@@ -8,9 +8,11 @@ const main = document.querySelector("main");
 const cartButton = document.querySelector("#cart");
 const foodItems = document.querySelector(".food-items");
 const subTotalP = document.createElement("p");
+const totalP = document.createElement("p");
 const checkoutButton = document.createElement("button");
 const printReceiptButton = document.createElement("button");
 printReceiptButton.textContent = "Print Receipt";
+printReceiptButton.classList.add("print-receipt");
 
 const snacksGC = [
   {
@@ -148,24 +150,17 @@ main.addEventListener("click", (e) => {
   if (e.target.classList.contains("checkout-button")) {
     const checkoutDiv = document.createElement("div");
     const salesTax = document.createElement("p");
-    const cartTotal = document.createElement("p");
     const cashButton = document.createElement("button");
     const creditButton = document.createElement("button");
     subTotalP.textContent = `Subtotal: $${subTotal.toFixed(2)}`;
     salesTax.textContent = `Sales tax: 6%`;
     total = subTotal + subTotal * 0.06;
-    cartTotal.textContent = `Total: ${total.toFixed(2)}`;
+    totalP.textContent = `Total: ${total.toFixed(2)}`;
     cashButton.textContent = "Cash";
     creditButton.textContent = "Credit";
     cashButton.classList.add("cash-button", "payment");
     creditButton.classList.add("credit-button", "payment");
-    checkoutDiv.append(
-      subTotalP,
-      salesTax,
-      cartTotal,
-      cashButton,
-      creditButton
-    );
+    checkoutDiv.append(subTotalP, salesTax, totalP, cashButton, creditButton);
     cartUl.append(checkoutDiv);
     // });
   }
@@ -174,8 +169,8 @@ main.addEventListener("click", (e) => {
     const cashForm = document.querySelector(".cash-form");
     cashForm.style.display = "block";
     main.addEventListener("click", (e) => {
+      e.preventDefault;
       if (e.target.classList.contains("cash-out")) {
-        e.preventDefault;
         const cashInput = document.querySelector("#tender-amount");
         const changeAmount = document.createElement("p");
         const cashTendered = cashInput.value;
@@ -192,24 +187,26 @@ main.addEventListener("click", (e) => {
   }
 
   if (e.target.classList.contains("credit-button")) {
-    e.preventDefault;
     const creditForm = document.querySelector(".credit-form");
     creditForm.style.display = "block";
     cartUl.append(creditForm);
     main.addEventListener("click", (e) => {
+      e.preventDefault;
       if (e.target.classList.contains("run-card")) {
         creditForm.append(printReceiptButton);
       }
     });
   }
-});
 
-/*
-const receipt = document.querySelector("div");
-const itemName = document.querySelector("p");
-const itemPrice = document.querySelector("p");
-subTotal.textContent = `Subtotal: $${subTotal.toFixed(2)}`;
-total.textContent = `Total: $${total.toFixed(2)}`;
-receipt.append(itemName, itemPrice, subTotal, total);
-cartUl.append(receipt);
-*/
+  if (e.target.classList.contains("print-receipt")) {
+    const receipt = document.querySelector("div");
+    shoppingCart.forEach((item) => {
+      const itemName = document.querySelector("p");
+      const itemPrice = document.querySelector("p");
+      itemName.textContent = item.name;
+      itemPrice.textContent = item.price;
+      receipt.append(itemName, itemPrice);
+    });
+    cartUl.append(receipt);
+  }
+});
