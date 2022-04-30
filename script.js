@@ -126,19 +126,17 @@ main.addEventListener("click", (e) => {
     cartUl.innerHTML = "";
     shoppingCart.forEach((item) => {
       const cartLi = document.createElement("li");
-      const cartDiv = document.createElement("div");
       const cartTitle = document.createElement("p");
       const cartPrice = document.createElement("p");
       const cartImage = document.createElement("img");
       subTotal += item.price;
-      cartDiv.classList.add("cart-div");
+      cartLi.classList.add("cart-li");
       cartImage.classList.add("cart-food-images");
-      cartTitle.textContent = item.name;
-      cartPrice.textContent = item.price;
-      cartDiv.setAttribute("data-price", item.price);
+      cartTitle.textContent = `Item: ${item.name};`;
+      cartPrice.textContent = `Price: $${item.price.toFixed(2)}`;
+      cartLi.setAttribute("data-price", item.price);
       cartImage.setAttribute("src", item.image);
-      cartDiv.append(cartImage, cartTitle, cartPrice);
-      cartLi.append(cartDiv);
+      cartLi.append(cartImage, cartTitle, cartPrice);
       cartUl.append(cartLi);
     });
     checkoutButton.classList = "checkout-button";
@@ -160,6 +158,7 @@ main.addEventListener("click", (e) => {
     creditButton.textContent = "Credit";
     cashButton.classList.add("cash-button", "payment");
     creditButton.classList.add("credit-button", "payment");
+    checkoutDiv.classList.add("check-out-div");
     checkoutDiv.append(subTotalP, salesTaxP, totalP, cashButton, creditButton);
     cartUl.append(checkoutDiv);
     // });
@@ -206,9 +205,7 @@ main.addEventListener("click", (e) => {
     const itemDiv = document.createElement("div");
     receipt.textContent = "Grand Circus Snacks";
     receipt.classList.add("receipt-paper");
-    receipt.style.width = "100%";
-    receipt.style.backgroundColor = "white";
-    receipt.style.color = "black";
+    itemDiv.classList.add("item-div");
     shoppingCart.forEach((item) => {
       const itemNamePrice = document.createElement("p");
       itemNamePrice.textContent = `Item: ${item.name} Price: $${item.price}`;
