@@ -40,16 +40,16 @@
       <ul class="cart-ul"></ul>
       <div>
         <form class="cash-form">
-          <label for="tender-amount">Tender amount:</label>
+          <label for="tender-amount">Tender Amount:</label>
           <input
             type="number"
             name="tender-amount"
             id="tender-amount"
             required
           />
-          <button class="cash-out">Cash out</button>
+          <button class="cash-out">Cash Out</button>
         </form>
-        <form class="credit-form">
+        <!-- <form class="credit-form">
           <label for="credit-number">Credit Card Number</label>
           <input
             type="tel"
@@ -78,6 +78,66 @@
             id="cvv"
             required
           />
+          <button class="run-card">Run Card</button>
+        </form> -->
+        <form class="credit-form">
+          <div>
+            <label for="cc-number">Credit Card Number: </label>
+            <input
+              id="cc-number"
+              type="text"
+              maxlength="16"
+              autocomplete="off"
+              value=""
+              autofocus
+              placeholder="xxxxxxxxxxxxxxxx"
+              required
+            />
+          </div>
+          <div>
+            <label for=""cc-cvv"">CVV: </label>
+            <input
+              id="cc-cvv"
+              type="text"
+              maxlength="3"
+              autocomplete="off"
+              value=""
+              placeholder="xxx"
+              required
+            />
+          </div>
+          <div>
+            <label for="cc-exp-month">Exp Month: </label>
+            <select id="cc-exp-month" required>
+              <option value="01">Jan</option>
+              <option value="02">Feb</option>
+              <option value="03">Mar</option>
+              <option value="04">Apr</option>
+              <option value="05">May</option>
+              <option value="06">Jun</option>
+              <option value="07">Jul</option>
+              <option value="08">Aug</option>
+              <option value="09">Sep</option>
+              <option value="10">Oct</option>
+              <option value="11">Nov</option>
+              <option value="12">Dec</option>
+            </select>
+            <label for="cc-exp-year">Exp Year: </label>
+            <select id="cc-exp-year" required>
+              <option value="22">2022</option>
+              <option value="23">2023</option>
+              <option value="24">2024</option>
+              <option value="25">2025</option>
+              <option value="26">2026</option>
+              <option value="27">2027</option>
+              <option value="28">2028</option>
+              <option value="29">2029</option>
+              <option value="30">2030</option>
+              <option value="31">2031</option>
+              <option value="32">2032</option>
+              <option value="33">2033</option>
+            </select>
+          </div>
           <button class="run-card">Run Card</button>
         </form>
       </div>

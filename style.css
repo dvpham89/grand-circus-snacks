@@ -50,7 +50,7 @@ main {
 }
 
 .image-container img {
-  height: 250px;
+  width: 300px;
 }
 
 .food-container {
