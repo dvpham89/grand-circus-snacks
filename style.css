@@ -6,11 +6,13 @@
 
 body {
   height: 100vh;
+  background: white;
   font-family: "Bubblegum Sans", cursive;
 }
 
 header {
   height: 150px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,17 +26,35 @@ h1 {
 
 main {
   background: black;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  position: relative;
   color: white;
 }
 
 .nav-container {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   justify-content: space-between;
+  align-items: stretch;
+}
+ul {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+}
+
+.iconify {
+  padding: 20px;
+  font-size: 30px;
+  color: #ef6637;
+}
+
+a {
+  text-decoration: none;
 }
 
 .cart-link {
@@ -45,8 +65,6 @@ main {
 
 .image-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .image-container img {
@@ -56,24 +74,30 @@ main {
 .food-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .food-items {
-  width: 500px;
   display: flex;
   flex-wrap: wrap;
 }
 
 .food-items li {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
   text-align: center;
 }
 
 .food-images {
-  height: 200px;
-  width: 200px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 150px;
+  width: 150px;
   border-radius: 20%;
   margin: 20px;
 }
@@ -84,6 +108,10 @@ main {
   background-color: #ef6637;
   flex-direction: column;
   align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
 }
 
 .cart-div {
@@ -102,6 +130,12 @@ main {
 .credit-form {
   display: none;
 }
+button {
+  background-color: white;
+  border-radius: 10px;
+  text-align: center;
+  padding: 5px;
+}
 
 footer {
   display: flex;
@@ -113,24 +147,16 @@ footer {
 .footer-img {
   height: 50px;
   width: 50px;
-  margin-left: 20px;
+  margin-left: 10px;
 }
 
-nav {
+.socials-nav {
   height: 50px;
-  width: 200px;
-}
-
-ul {
-  display: flex;
-  justify-content: space-around;
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
+  width: 100px;
 }
 
 i.fa-brands {
   color: #ef6637;
+  margin-bottom: 10px;
+  padding: 15px;
 }
