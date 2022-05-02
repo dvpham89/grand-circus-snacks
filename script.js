@@ -192,20 +192,19 @@ main.addEventListener("click", (e) => {
     cashForm.style.display = "flex";
     main.addEventListener("click", (e) => {
       if (e.target.classList.contains("cash-out")) {
-        cashForm.innerHTML = "";
         e.preventDefault();
-        const cashInput = document.querySelector("#tender-amount");
         const changeAmount = document.createElement("p");
+        const cashInput = document.querySelector("#tender-amount");
         cashTendered = cashInput.value;
-        console.log(cashTendered);
+        cashForm.innerHTML = "";
         if (cashTendered >= total) {
           e.preventDefault();
           const difference = cashTendered - total;
           changeAmount.textContent = `Change: $${difference.toFixed(2)}`;
+          cashForm.append(changeAmount, printReceiptButton);
         } else {
           alert("Insufficient funds, please check amount.");
         }
-        cashForm.append(changeAmount, printReceiptButton);
       }
     });
     cartUl.append(cashForm);
@@ -228,6 +227,8 @@ main.addEventListener("click", (e) => {
     e.preventDefault();
     const receipt = document.createElement("div");
     const itemDiv = document.createElement("div");
+    const cTendered = document.createElement("p");
+    const cChange = document.createElement("p");
     receipt.textContent = "Grand Circus Snacks";
     receipt.classList.add("receipt-paper");
     itemDiv.classList.add("item-div");
@@ -236,10 +237,21 @@ main.addEventListener("click", (e) => {
       itemNamePrice.textContent = `Item: ${
         item.name
       } Price: $${item.price.toFixed(2)}`;
+      if (cashTendered) {
+        cTendered.textContent = `Cash Tendered: $${cashTendered}`;
+        cChange.textContent = `Change Due: $${cashTendered - total}`;
+      }
       subTotalP.textContent = `Subtotal: $${subTotal.toFixed(2)}`;
       salesTaxP.textContent = `Sales tax: 6%`;
       totalP.textContent = `Total: $${total.toFixed(2)}`;
-      itemDiv.append(itemNamePrice, subTotalP, salesTaxP, totalP);
+      itemDiv.append(
+        itemNamePrice,
+        subTotalP,
+        salesTaxP,
+        totalP,
+        cTendered,
+        cChange
+      );
       receipt.append(itemDiv);
     });
     cartUl.append(receipt);
