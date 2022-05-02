@@ -14,7 +14,6 @@
       src="https://kit.fontawesome.com/8597d0ec4c.js"
       crossorigin="anonymous"
     ></script>
-    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
   </head>
   <body>
     <header>
@@ -27,8 +26,16 @@
         ></a>
       </div>
       <div class="image-container">
-        <img class="mobile-image" src="assets/mobile-image.jpg" alt="" />
-        <img class="desktop-image" src="assets/desktop-image.jpg" alt="">
+        <img
+          class="mobile-image"
+          src="assets/mobile-image.jpg"
+          alt="ferris-wheel"
+        />
+        <img
+          class="desktop-image"
+          src="assets/desktop-image.jpg"
+          alt="merry-go-round"
+        />
       </div>
       <div class="food-container">
         <ul class="food-items"></ul>
@@ -37,45 +44,9 @@
       <div>
         <form class="cash-form">
           <label for="tender-amount">Tender Amount:</label>
-          <input
-            type="number"
-            name="tender-amount"
-            id="tender-amount"
-            required
-          />
+          <input type="tel" name="tender-amount" id="tender-amount" required />
           <button class="cash-out">Cash Out</button>
         </form>
-        <!-- <form class="credit-form">
-          <label for="credit-number">Credit Card Number</label>
-          <input
-            type="tel"
-            pattern="[0-9\s]{13,19}"
-            maxlength="16"
-            placeholder="xxxx xxxx xxxx xxxx"
-            name="credit-number"
-            id="credit-number"
-            required
-          />
-          <label for="exp">Exp</label>
-          <input
-            type="date"
-            pattern="[0-9\s]{13,19}"
-            maxlength="5"
-            name="exp"
-            id="exp"
-            required
-          />
-          <label for="cvv">CVV</label>
-          <input
-            type="number"
-            pattern="[0-9\s]{13,19}"
-            maxlength="3"
-            name="cvv"
-            id="cvv"
-            required
-          />
-          <button class="run-card">Run Card</button>
-        </form> -->
         <form class="credit-form">
           <div>
             <label for="cc-number">Credit Card Number: </label>
@@ -91,7 +62,7 @@
             />
           </div>
           <div>
-            <label for=""cc-cvv"">CVV: </label>
+            <label for="cc-cvv">CVV: </label>
             <input
               id="cc-cvv"
               type="text"
