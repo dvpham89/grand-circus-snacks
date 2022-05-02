@@ -254,7 +254,9 @@ main.addEventListener("click", (e) => {
       } Price: $${item.price.toFixed(2)}`;
       if (cashTendered) {
         cTendered.textContent = `Cash Tendered: $${cashTendered}`;
-        cChange.textContent = `Change Due: $${cashTendered - total}`;
+        cChange.textContent = `Change Due: $${(cashTendered - total).toFixed(
+          2
+        )}`;
       }
       subTotalP.textContent = `Subtotal: $${subTotal.toFixed(2)}`;
       salesTaxP.textContent = `Sales tax: 6%`;
