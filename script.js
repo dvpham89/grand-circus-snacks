@@ -159,7 +159,6 @@ main.addEventListener("click", (e) => {
       }
     });
     checkoutButton.classList = "checkout-button";
-    cartUl.style.display = "flex";
     subTotalP.textContent = `Subtotal: $${subTotal.toFixed(2)}`;
     checkoutButton.textContent = "Check out";
     cartUl.append(subTotalP, checkoutButton);
@@ -178,7 +177,6 @@ main.addEventListener("click", (e) => {
     checkoutDiv.classList.add("check-out-div");
     checkoutDiv.append(subTotalP, salesTaxP, totalP, cashButton, creditButton);
     cartUl.append(checkoutDiv);
-    // });
   }
 
   if (e.target.classList.contains("cash-button")) {
