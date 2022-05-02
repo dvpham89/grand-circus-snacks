@@ -54,7 +54,7 @@ ul {
 }
 
 .mobile-image {
-  width: 50%;
+  width: 300px;
 }
 
 .desktop-image {
@@ -75,14 +75,27 @@ ul {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   flex-wrap: wrap;
   flex: 50%;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .food-images {
   height: 150px;
   width: 150px;
   border-radius: 20%;
+  padding: 5px;
+}
+
+.add-to-cart {
+  font-family: "Bubblegum Sans", cursive;
+  color: #ef6637;
+  border-radius: 15px;
+  border: 1px solid #ef6637;
+  padding: 10px;
+  margin: 5px;
 }
 
 .cart-ul {
@@ -109,16 +122,28 @@ ul {
   height: 50px;
   width: 50px;
   border-radius: 20%;
-  margin: 5px;
+  padding: 5px;
 }
-
-ul p {
-  text-align: end;
+.check-out-div button {
+  width: 45%;
+  box-sizing: border-box;
 }
 
 .cash-form,
 .credit-form {
   display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+}
+
+#tender-amount,
+#cc-number,
+#cc-cvv,
+#cc-exp-month,
+#cc-exp-year {
+  border-radius: 15px;
+  padding: 5px;
 }
 
 .receipt-paper {
@@ -128,9 +153,22 @@ ul p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 20px;
   margin-top: 10px;
 }
 
+.checkout-button,
+.cash-button,
+.credit-button,
+.cash-out,
+.run-card,
+.print-receipt {
+  font-family: "Bubblegum Sans", cursive;
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 5px;
+}
 footer {
   height: 75px;
   display: flex;
@@ -166,6 +204,11 @@ i.fa-brands {
   }
   .desktop-image {
     display: block;
-    width: 75%;
+    width: 800px;
+    height: 500px;
+  }
+
+  .food-items li {
+    flex: 20%;
   }
 } ;
