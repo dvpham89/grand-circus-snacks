@@ -100,8 +100,17 @@ const snacksGC = [
   },
 ];
 
-const createMenu = () => {
-  snacksGC.forEach((snack, index) => {
+const createMenu = (filter) => {
+  let filteredArray = snacksGC;
+  if (filter === "all") {
+    filteredArray = snacksGC;
+  } else if (filter) {
+    filteredArray = snacksGC.filter((snack) => {
+      return snack.category === filter;
+    });
+  }
+  foodItems.innerHTML = "";
+  filteredArray.forEach((snack, index) => {
     const menuLi = document.createElement("li");
     const title = document.createElement("p");
     const description = document.createElement("p");
@@ -110,6 +119,7 @@ const createMenu = () => {
     const addToCart = document.createElement("button");
     addToCart.setAttribute("data-index", index);
     image.setAttribute("src", snack.image);
+    image.setAttribute("alt", snack.name);
     image.classList.add("food-images");
     title.textContent = snack.name;
     description.textContent = snack.description;
@@ -121,7 +131,7 @@ const createMenu = () => {
     foodItems.append(menuLi);
   });
 };
-createMenu();
+createMenu("all");
 
 const buildCart = () => {
   subTotal = 0;
@@ -142,6 +152,7 @@ const buildCart = () => {
     cartLi.setAttribute("data-price", item.price);
     removeButton.setAttribute("data-index", index);
     cartImage.setAttribute("src", item.image);
+    cartImage.setAttribute("alt", item.name);
     cartLi.append(cartImage, cartTitle, cartPrice, removeButton);
     cartUl.append(cartLi);
   });
@@ -157,6 +168,10 @@ main.addEventListener("click", (e) => {
     shoppingCart.push(snacksGC[index]);
     console.log(shoppingCart);
     buildCart();
+  }
+
+  if (e.target.classList.contains("filter")) {
+    createMenu(e.target.classList[0]);
   }
 
   if (

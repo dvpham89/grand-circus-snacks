@@ -49,6 +49,7 @@ ul {
 
 .image-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -59,6 +60,19 @@ ul {
 
 .desktop-image {
   display: none;
+}
+
+.filter-container {
+  margin: 10px;
+}
+
+.filter-container button {
+  font-family: "Bubblegum Sans", cursive;
+  color: #ef6637;
+  border-radius: 15px;
+  border: 1px solid #ef6637;
+  padding: 10px;
+  margin: 5px;
 }
 
 .food-container {
@@ -166,13 +180,15 @@ ul {
 .credit-button,
 .cash-out,
 .run-card,
-.print-receipt {
+.print-receipt,
+.remove-button {
   font-family: "Bubblegum Sans", cursive;
   border: 1px solid black;
   border-radius: 15px;
   padding: 10px;
   margin: 5px;
 }
+
 footer {
   height: 75px;
   display: flex;
