@@ -112,6 +112,10 @@ ul {
   z-index: 1;
 }
 
+.show {
+  display: flex;
+}
+
 .cart-li {
   display: flex;
   justify-content: space-around;

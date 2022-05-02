@@ -1,6 +1,7 @@
 "use strict";
 
 let shoppingCart = [];
+let cashTendered = 0;
 let subTotal = 0;
 let total = 0;
 const cartUl = document.querySelector(".cart-ul");
@@ -122,46 +123,53 @@ const createMenu = () => {
 };
 createMenu();
 
+const buildCart = () => {
+  subTotal = 0;
+  cartUl.innerHTML = "";
+  shoppingCart.forEach((item, index) => {
+    const cartLi = document.createElement("li");
+    const cartTitle = document.createElement("p");
+    const cartPrice = document.createElement("p");
+    const cartImage = document.createElement("img");
+    const removeButton = document.createElement("button");
+    subTotal += item.price;
+    cartLi.classList.add("cart-li");
+    cartImage.classList.add("cart-food-images");
+    removeButton.classList.add("remove-button");
+    cartTitle.textContent = `Item: ${item.name};`;
+    removeButton.textContent = "X";
+    cartPrice.textContent = `Price: $${item.price.toFixed(2)}`;
+    cartLi.setAttribute("data-price", item.price);
+    removeButton.setAttribute("data-index", index);
+    cartImage.setAttribute("src", item.image);
+    cartLi.append(cartImage, cartTitle, cartPrice, removeButton);
+    cartUl.append(cartLi);
+  });
+  checkoutButton.classList = "checkout-button";
+  subTotalP.textContent = `Subtotal: $${subTotal.toFixed(2)}`;
+  checkoutButton.textContent = "Check out";
+  cartUl.append(subTotalP, checkoutButton);
+};
+
 main.addEventListener("click", (e) => {
   if (e.target.classList.contains("add-to-cart")) {
     const index = e.target.getAttribute("data-index");
     shoppingCart.push(snacksGC[index]);
     console.log(shoppingCart);
+    buildCart();
   }
 
   if (
     e.target.classList.contains("cart-link") ||
     e.target.classList.contains("fa")
   ) {
-    subTotal = 0;
-    cartUl.innerHTML = "";
-    shoppingCart.forEach((item) => {
-      const cartLi = document.createElement("li");
-      const cartTitle = document.createElement("p");
-      const cartPrice = document.createElement("p");
-      const cartImage = document.createElement("img");
-      const removeButton = document.createElement("button");
-      subTotal += item.price;
-      cartLi.classList.add("cart-li");
-      cartImage.classList.add("cart-food-images");
-      removeButton.classList.add("remove-button");
-      cartTitle.textContent = `Item: ${item.name};`;
-      removeButton.textContent = "X";
-      cartPrice.textContent = `Price: $${item.price.toFixed(2)}`;
-      cartLi.setAttribute("data-price", item.price);
-      cartImage.setAttribute("src", item.image);
-      cartLi.append(cartImage, cartTitle, cartPrice, removeButton);
-      cartUl.append(cartLi);
-    });
-    main.addEventListener("click", (e) => {
-      if (e.target.classList.contains("remove-button")) {
-        e.target.parentNode.remove();
-      }
-    });
-    checkoutButton.classList = "checkout-button";
-    subTotalP.textContent = `Subtotal: $${subTotal.toFixed(2)}`;
-    checkoutButton.textContent = "Check out";
-    cartUl.append(subTotalP, checkoutButton);
+    cartUl.classList.toggle("show");
+  }
+
+  if (e.target.classList.contains("remove-button")) {
+    const index = e.target.getAttribute("data-index");
+    shoppingCart.splice(index, 1);
+    buildCart();
   }
 
   if (e.target.classList.contains("checkout-button")) {
@@ -184,10 +192,12 @@ main.addEventListener("click", (e) => {
     cashForm.style.display = "flex";
     main.addEventListener("click", (e) => {
       if (e.target.classList.contains("cash-out")) {
+        cashForm.innerHTML = "";
         e.preventDefault();
         const cashInput = document.querySelector("#tender-amount");
         const changeAmount = document.createElement("p");
-        const cashTendered = cashInput.value;
+        cashTendered = cashInput.value;
+        console.log(cashTendered);
         if (cashTendered >= total) {
           e.preventDefault();
           const difference = cashTendered - total;
