@@ -133,21 +133,30 @@ main.addEventListener("click", (e) => {
     e.target.classList.contains("cart-link") ||
     e.target.classList.contains("fa")
   ) {
+    subTotal = 0;
     cartUl.innerHTML = "";
     shoppingCart.forEach((item) => {
       const cartLi = document.createElement("li");
       const cartTitle = document.createElement("p");
       const cartPrice = document.createElement("p");
       const cartImage = document.createElement("img");
+      const removeButton = document.createElement("button");
       subTotal += item.price;
       cartLi.classList.add("cart-li");
       cartImage.classList.add("cart-food-images");
+      removeButton.classList.add("remove-button");
       cartTitle.textContent = `Item: ${item.name};`;
+      removeButton.textContent = "X";
       cartPrice.textContent = `Price: $${item.price.toFixed(2)}`;
       cartLi.setAttribute("data-price", item.price);
       cartImage.setAttribute("src", item.image);
-      cartLi.append(cartImage, cartTitle, cartPrice);
+      cartLi.append(cartImage, cartTitle, cartPrice, removeButton);
       cartUl.append(cartLi);
+    });
+    main.addEventListener("click", (e) => {
+      if (e.target.classList.contains("remove-button")) {
+        e.target.parentNode.remove();
+      }
     });
     checkoutButton.classList = "checkout-button";
     cartUl.style.display = "flex";
@@ -157,6 +166,7 @@ main.addEventListener("click", (e) => {
   }
 
   if (e.target.classList.contains("checkout-button")) {
+    checkoutButton.style.display = "none";
     subTotalP.textContent = `Subtotal: $${subTotal.toFixed(2)}`;
     salesTaxP.textContent = `Sales tax: 6%`;
     total = subTotal + subTotal * 0.06;
